@@ -1,19 +1,30 @@
-import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import { Marker } from "react-leaflet";
 
-const driverIcon = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
+const carIcon = new L.Icon({
+
+    iconUrl: "/car.svg",
+
+    iconSize: [36,36],
+
+    iconAnchor: [18,18]
+
 });
 
 function DriverMarker({ position }) {
-  return (
-    <Marker position={position} icon={driverIcon}>
-      <Popup>Driver</Popup>
-    </Marker>
-  );
+
+    return (
+
+        <Marker
+
+            position={position}
+
+            icon={carIcon}
+
+        />
+
+    );
+
 }
 
 export default DriverMarker;

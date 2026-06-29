@@ -1,66 +1,95 @@
 import { MapContainer, TileLayer } from "react-leaflet";
-import DriverRoute from "./DriverRoute"
-import PickupPoints from "./PickupPoints";
-import driverRoute from "../data/route";
-import { generateCorridor } from "../utils/corridor";
-import Corridor from "./Corridor";
+
+import DriverRoute from "./DriverRoute";
 import DriverMarker from "./DriverMarker";
-import { useState, useEffect } from "react";
+import PickupPoints from "./PickupPoints";
+import Corridor from "./Corridor";
+import Dashboard from "./Dashboard";
+
+import useSimulation from "../hooks/useSimulation";
+import ZoneBoundary from "./ZoneBoundary";
+import zone from "../data/zone";
+import Legend from "./Legend";
+import Controls from "./Controls";
 
 function MapView() {
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const {
 
-    const currentRoute = driverRoute.slice(0, currentIndex + 1);
+        currentRoute,
+        currentPosition,
+        corridor,
+        eligibleCount,
+        currentIndex,
+        totalPoints,
+        running, 
+        setRunning,
+        resetSimulation
 
-    const corridor = generateCorridor(currentRoute);
-
-    useEffect(() => {
-
-    const timer = setInterval(() => {
-
-        setCurrentIndex((prev) => {
-
-            if(prev >= driverRoute.length-1)
-                return 0;
-
-            return prev+1;
-
-        });
-
-    },1000);
-
-    return ()=>clearInterval(timer);
-
-    },[]);
-
-    const currentPosition = driverRoute[currentIndex];
-
+    } = useSimulation();
 
     return (
 
-        <MapContainer
-    center={[28.4595,77.0266]}
-    zoom={13}
-    style={{height:"100vh",width:"100%"}}
->
+        <div
+            style={{
+                position: "relative"
+            }}
+        >
 
-    <TileLayer
-        attribution='&copy; OpenStreetMap contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
+            <Dashboard
 
-    <DriverMarker
-    position={currentPosition}
-    />
+                eligibleCount={eligibleCount}
+                currentIndex={currentIndex}
+                totalPoints={totalPoints}
+                running={running}
 
-    <DriverRoute route={currentRoute} />
+            />
 
-    <Corridor corridor={corridor}/>
+            <Legend/>
 
-    <PickupPoints corridor = {corridor} />
+            <Controls
+                running = {running}
+                setRunning = {setRunning}
+                resetSimulation = {resetSimulation}
+            />
 
-</MapContainer>
+            <MapContainer
+                center={[28.4595, 77.0266]}
+                zoom={13}
+                style={{
+                    height: "100vh",
+                    width: "100%"
+                }}
+            >
+
+                <TileLayer
+                    attribution="&copy; OpenStreetMap contributors"
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+
+                <DriverMarker
+                    position={currentPosition}
+                />
+
+                <DriverRoute
+                    route={currentRoute}
+                />
+
+                <ZoneBoundary
+                    zone = {zone}
+                />
+
+                <Corridor
+                    corridor={corridor}
+                />
+
+                <PickupPoints
+                    corridor={corridor}
+                />
+
+            </MapContainer>
+
+        </div>
 
     );
 

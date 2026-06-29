@@ -2,6 +2,8 @@ import { Marker, Popup } from "react-leaflet";
 import pickupPoints from "../data/pickups";
 import { convertToH3 } from "../utils/h3Utils";
 import { greenIcon, redIcon } from "../utils/markerIcons";
+import zone from "../data/zone";
+
 
 function PickupPoints({ corridor }) {
   return (
@@ -13,7 +15,7 @@ function PickupPoints({ corridor }) {
           pickup.lng
         );
 
-        const eligible = corridor.has(cell);
+        const eligible = (corridor.has(cell) && zone.has(cell));
   
 
         console.log(pickup.name, eligible);
