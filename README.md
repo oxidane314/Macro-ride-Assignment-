@@ -1,16 +1,108 @@
-# React + Vite
+# Macro Rides Driver Pickup Corridor Simulator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simulation of a driver moving along a predefined route in Delhi NCR. It demonstrates how H3 spatial indexing can be used to identify pickup requests that fall within a 350-meter corridor around the driver's route.
 
-Currently, two official plugins are available:
+The application is built using React, Leaflet, and H3-js.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📸 Demo
 
-## React Compiler
+> **Live Demo:**https://lambent-unicorn-80e41d.netlify.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Simulated driver moving along a predefined route
+- Interactive map using Leaflet
+- H3-based 350 m buffer corridor around the driver
+- Service zone visualization
+- Randomly generated pickup requests
+- Eligible pickup detection using H3 indexing
+- Dashboard showing simulation details
+- Play, Pause and Reset controls
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 📷 Screenshots
+
+## Main Dashboard
+
+```
+public/Dashboard.png
+```
+
+---
+
+## H3 Corridor
+
+(Add screenshot here)
+
+```
+public/corridor.png
+```
+
+---
+
+## Simulation
+
+(Add GIF here)
+
+```
+assets/demo.gif
+```
+
+
+## Tech Stack
+
+- React
+- Vite
+- Leaflet
+- React Leaflet
+- H3-js
+
+## Project Structure
+
+```
+src/
+│
+├── components/
+├── data/
+├── hooks/
+├── utils/
+├── App.jsx
+└── main.jsx
+```
+
+## How it Works
+
+1. A predefined driver route is loaded.
+2. The driver moves along the route using a simulation.
+3. Each route point is converted into H3 cells.
+4. Neighboring H3 cells are added to create a corridor.
+5. Pickup locations are converted to H3 cells.
+6. Pickups inside the corridor and service zone are marked as eligible.
+
+## Running the Project
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
+
+```bash
+npm run dev
+```
+
+Build the project
+
+```bash
+npm run build
+```
+
+## Future Improvements
+
+- Real-time GPS updates
+- Backend integration
+- Multiple driver simulation
+- Live pickup requests
+- Better UI and animations
+
