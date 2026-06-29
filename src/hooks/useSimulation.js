@@ -53,14 +53,19 @@ function useSimulation() {
 
     const corridor = generateCorridor(currentRoute);
 
+    const currentCell = convertToH3(
+        currentPosition[0],
+        currentPosition[1]
+    );
+
     const eligibleCount = pickupPoints.filter((pickup) => {
 
-        const cell = convertToH3(
-            pickup.lat,
-            pickup.lng
-        );
+    const cell = convertToH3(
+        pickup.lat,
+        pickup.lng
+    );
 
-        return corridor.has(cell);
+    return corridor.has(cell);
 
     }).length;
 
@@ -74,7 +79,8 @@ function useSimulation() {
         totalPoints: driverRoute.length,
         running,
         setRunning, 
-        resetSimulation
+        resetSimulation,
+        currentCell
 
     };
 

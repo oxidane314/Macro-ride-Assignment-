@@ -18,6 +18,7 @@ function MapView() {
 
         currentRoute,
         currentPosition,
+        currentCell,
         corridor,
         eligibleCount,
         currentIndex,
@@ -42,6 +43,7 @@ function MapView() {
                 currentIndex={currentIndex}
                 totalPoints={totalPoints}
                 running={running}
+                currentCell={currentCell}
 
             />
 
@@ -63,8 +65,8 @@ function MapView() {
             >
 
                 <TileLayer
-                    attribution="&copy; OpenStreetMap contributors"
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                     attribution='&copy; OpenStreetMap contributors & CARTO'
+    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
                 />
 
                 <DriverMarker

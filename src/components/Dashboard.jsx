@@ -3,8 +3,8 @@ function Dashboard({
     eligibleCount,
     currentIndex,
     totalPoints,
-    running
-
+    running,
+    currentCell
 }) {
 
     return (
@@ -56,6 +56,24 @@ function Dashboard({
 
                 {currentIndex + 1} / {totalPoints}
 
+            </p>
+
+            <p>
+
+                <strong>Current H3 Cell</strong>
+
+                <br />
+
+                <span
+                    style={{
+                        fontSize: "12px",
+                        wordBreak: "break-all",
+                        color: "#555"
+                    }}
+                >
+                    {currentCell}
+                </span>
+                
             </p>
 
         </div>
