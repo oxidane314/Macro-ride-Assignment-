@@ -22,29 +22,22 @@ The application is built using React, Leaflet, and H3-js.
 # 📷 Screenshots
 
 ## Main Dashboard
-
 ```
-public/Dashboard.png
+screenshots/Dashboard.png
 ```
 
 ---
 
 ## H3 Corridor
-
-(Add screenshot here)
-
 ```
-public/corridor.png
+screenshots/corridor.png
 ```
 
 ---
 
 ## Simulation
-
-(Add GIF here)
-
 ```
-assets/demo.gif
+screenshots/demo.gif
 ```
 
 
